@@ -39,7 +39,7 @@ jobs:
         run: |
           kdt scan\
             -p ${{ github.event.repository.name }}\
-            -b ${{ github.ref }}\
+            -b main\
             -t semgrep\
             -params:ruleset_options:owasp-top-ten\
             -params:ruleset_types:0
