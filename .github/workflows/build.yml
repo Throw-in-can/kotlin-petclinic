@@ -33,7 +33,14 @@ jobs:
       - name: list-projects
         run: |
           kdt list projects\
-          
+      - name: semgrep-Scan
+        run: |
+          kdt scan\
+            -p${{ github.event.repository.name }}\
+            -b${{ github.ref }}\
+            -t semgrep\
+            -params:ruleset_options:owasp-top-ten\
+            -params:ruleset_types:0
     
       - name: Import Sbom Results
         run: |
