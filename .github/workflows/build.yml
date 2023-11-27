@@ -38,8 +38,8 @@ jobs:
       - name: semgrep-Scan
         run: |
           kdt scan\
-            -p${{ github.event.repository.name }}\
-            -b${{ github.ref }}\
+            -p ${{ github.event.repository.name }}\
+            -b ${{ github.ref }}\
             -t semgrep\
             -params:ruleset_options:owasp-top-ten\
             -params:ruleset_types:0
