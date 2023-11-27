@@ -1,0 +1,38 @@
+name: sbom-Pipeline
+ 
+on:
+   push:
+    branches: [ main ]
+          
+ 
+jobs:
+  build:
+
+  runs-on: ubuntu-latest
+
+  steps:
+    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+    - uses: actions/checkout@v3
+    - name: Setup KDT
+      run:|
+        curl -sSL https://cli.kondukto.io | sh
+        echo "KONDUKTO_HOST=${ { secrets.KONDUKTO_HOST }}" >> $GITHUB_ENV
+        echo "KONDUKTO_TOKEN=${ { secrets.KONDUKTO_TOKEN }}" >> $GITHUB_ENV
+    # Run Kondukto CLI (KDT) to trigger
+    # a SAST (gosec) scan
+    - name: Run a SAST scan
+        run:|
+          kdt scan
+            -p ${ { github.event.repository.name }}
+            -t gosec
+            -b ${ { github.ref }} 
+ 
+    # Run Kondukto CLI (KDT) to trigger
+    # a Contanier Secuirt (trivy) scan
+    - name: Run a SCA scan
+        run:|
+          kdt scan
+            -p ${ { github.event.repository.name }}
+            -t  trivy
+            --image=ubuntu:latest
+            -b ${ { github.ref }} 
