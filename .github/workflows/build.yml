@@ -34,7 +34,11 @@ jobs:
       - name: list-projects
         run: |
           kdt list projects\
-          
+      
+      - name: scan-again
+        run: |
+          kdt scan -p kotlin-petclinic -t semgrep -b main 
+      
       - name: semgrep-Scan
         run: |
           kdt scan\
