@@ -28,8 +28,8 @@ jobs:
       - name: Setup KDT
         run: |
           curl -sSL https://cli.kondukto.io | sh
-          echo "KONDUKTO_HOST=${{ secrets.KONDUKTO_HOST }}" >> $GITHUB_ENV
-          echo "KONDUKTO_TOKEN=${{ secrets.KONDUKTO_TOKEN }}" >> $GITHUB_ENV
+          echo "KONDUKTO_HOST=${{ secrets.APPSECSANTA_HOST }}" >> $GITHUB_ENV
+          echo "KONDUKTO_TOKEN=${{ secrets.APPSECSANTA_TOKEN }}" >> $GITHUB_ENV
 
     
       - name: Import Sbom Results
