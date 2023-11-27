@@ -17,13 +17,13 @@ jobs:
  
     - uses: actions/checkout@v3
     - name: Setup KDT
-      run: |
+       run:|
         curl -sSL https://cli.kondukto.io | sh
         echo "KONDUKTO_HOST=${ { secrets.KONDUKTO_HOST }}" >> $GITHUB_ENV
         echo "KONDUKTO_TOKEN=${ { secrets.KONDUKTO_TOKEN }}" >> $GITHUB_ENV
 
     - name: Run-a-SAST-scan
-        run:|
+       run:|
           kdt scan
             -p ${ { github.event.repository.name }}
             -t gosec
@@ -36,3 +36,4 @@ jobs:
             -t  trivy
             --image=ubuntu:latest
             -b ${ { github.ref }} 
+    - name: import-Sbom-Results
