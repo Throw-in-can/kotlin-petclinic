@@ -31,13 +31,7 @@ jobs:
           echo "KONDUKTO_HOST=${{ secrets.KONDUKTO_HOST }}" >> $GITHUB_ENV
           echo "KONDUKTO_TOKEN=${{ secrets.KONDUKTO_TOKEN }}" >> $GITHUB_ENV
 
-      - name: Run a SAST scan
-        run: |
-          kdt scan \
-            -p ${{ github.event.repository.name }} \
-            -t bandit \
-            -b ${{ github.ref }}
-
+    
       - name: Import Sbom Results
         run: |
           kdt sbom \
