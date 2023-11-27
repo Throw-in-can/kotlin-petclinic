@@ -34,7 +34,7 @@ jobs:
     
       - name: Import Sbom Results
         run: |
-          kdt sbom 
+          kdt sbom import
             -p ${{ github.event.repository.name }} 
             -b ${{ github.ref }} 
             -f kotlin-cyclone.json
