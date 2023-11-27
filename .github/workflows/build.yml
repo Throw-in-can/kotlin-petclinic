@@ -1,20 +1,13 @@
-
 name: kdtGradlePipeline
-
 on:
-
   push:
     branches:
            -main
-           
-  workflow_dispatch:
- 
-jobs:
- 
+  workflow_dispatch: 
+jobs: 
   build:
    runs-on: ubuntu-latest
-   steps:
-  
+   steps:  
     - uses: actions/checkout@v3
     - name: updateJavaSDK
       uses: actions/setup-java@v3
@@ -22,27 +15,26 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: gradle
-    - run: ./gradlew build --no-daemon
         
-    - uses: actions/checkout@v2
-    - name: Setup KDT
+    - name: gradleBuild
+      run: ./gradlew build --no-daemon 
+    
+    - name: Setup-KDT
        run:|
         curl -sSL https://cli.kondukto.io | sh
         echo "KONDUKTO_HOST=${ { secrets.KONDUKTO_HOST }}" >> $GITHUB_ENV
         echo "KONDUKTO_TOKEN=${ { secrets.KONDUKTO_TOKEN }}" >> $GITHUB_ENV
-
-    - uses: actions/checkout@v3
+    
     - name: Run-a-SAST-scan
        run:|
-          kdt scan
-            -p ${ { github.event.repository.name }}
-            -t gosec
+          kdt scan\
+            -p ${ { github.event.repository.name }}\
+            -t gosec\
             -b ${ { github.ref }} 
 
-    - uses: actions/checkout@v3
     - name: import-Sbom-Results
         run:|
-          kdt sbom
-            -p ${{github.event.repository.name}}
-            -b ${{githhub.ref}}
+          kdt sbom\
+            -p ${{github.event.repository.name}}\
+            -b ${{githhub.ref}}\
             -f kotlin-cyclone.json
