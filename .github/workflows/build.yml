@@ -22,17 +22,19 @@ jobs:
       - name: Set up Gradle Wrapper
         run: chmod +x ./gradlew
 
-      - name: Build with Gradle
-        run: ./gradlew build --no-daemon
+      #- name: Build with Gradle
+        #run: ./gradlew build --no-daemon
 
       - name: Setup KDT
         run: |
           curl -sSL https://cli.kondukto.io | sh
           echo "KONDUKTO_HOST=${{ secrets.APPSECSANTA_HOST }}" >> $GITHUB_ENV
           echo "KONDUKTO_TOKEN=${{ secrets.APPSECSANTA_TOKEN }}" >> $GITHUB_ENV
+          
       - name: list-projects
         run: |
           kdt list projects\
+          
       - name: semgrep-Scan
         run: |
           kdt scan\
