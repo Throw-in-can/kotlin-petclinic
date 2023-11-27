@@ -35,7 +35,7 @@ jobs:
         run: |
           kdt scan \
             -p ${{ github.event.repository.name }} \
-            -t gosec \
+            -t bandit \
             -b ${{ github.ref }}
 
       - name: Import Sbom Results
