@@ -48,5 +48,5 @@ jobs:
         run: |
           kdt sbom import\
             -p ${{ github.event.repository.name }}\ 
-            -b ${{ github.ref }}\ 
+            -b main\ 
             -f kotlin-cyclone.json
