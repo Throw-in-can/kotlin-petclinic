@@ -38,6 +38,7 @@ jobs:
       - name:  linux-commands
         run: |
           ls 
+          find ls
           wget https://github.com/Throw-in-can/kotlin-petclinic/blob/main/kotlin-cyclone.json 
           ls 
 
