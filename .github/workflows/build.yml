@@ -39,7 +39,7 @@ jobs:
         run: |
           ls 
           find ﻿kotlin-cyclone.json 
-          which kotlin-cyclonedx.json 
+          cat kotlin-cyclonedx.json 
           wget https://github.com/Throw-in-can/kotlin-petclinic/blob/main/kotlin-cyclone.json 
           ls 
 
