@@ -37,11 +37,11 @@ jobs:
 
       - name:  linux-commands
         run: |
-          ls\
-          find ﻿kotlin-cyclone.json\
-          which kotlin-cyclonedx.json\
-          wget https://github.com/Throw-in-can/kotlin-petclinic/blob/main/kotlin-cyclone.json\
-          ls\
+          ls 
+          find ﻿kotlin-cyclone.json 
+          which kotlin-cyclonedx.json 
+          wget https://github.com/Throw-in-can/kotlin-petclinic/blob/main/kotlin-cyclone.json 
+          ls 
 
       - name: import-manual
         run: |
@@ -55,11 +55,11 @@ jobs:
       - name: semgrep-Scan
         run: |
           kdt scan\
-            -p ${{ github.event.repository.name }}\
-            -b main\
-            -t semgrep\
-            --params=ruleset_options:owasp-top-ten\
-            --params=ruleset_types:0\
+            -p ${{ github.event.repository.name }} \
+            -b main \
+            -t semgrep \
+            --params=ruleset_options:owasp-top-ten \
+            --params=ruleset_types:0 \
             --params=exclude:
     
       - name: Import Sbom Results
