@@ -62,9 +62,9 @@ jobs:
             #--params=ruleset_types:0 \
             #--params=exclude:
     
-      - name: Import Sbom Results
-        run: |
-          kdt sbom import\
-            -p ${{ github.event.repository.name }}\ 
-            -b main\ 
-            -f kotlin-cyclone.json
+     # - name: Import Sbom Results
+      #  run: |
+       #   kdt sbom import\
+        #    -p ${{ github.event.repository.name }}\ 
+         #   -b main\ 
+          #  -f kotlin-cyclone.json
