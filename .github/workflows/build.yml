@@ -51,15 +51,15 @@ jobs:
         run: |
           kdt scan -p kotlin-petclinic -t semgrep -b main --params=ruleset_options:owasp-top-ten --params=ruleset_types:0 --params=exclude:
       
-      - name: semgrep-Scan
-        run: |
-          kdt scan\
-            -p ${{ github.event.repository.name }} \
-            -b main \
-            -t semgrep \
-            --params=ruleset_options:owasp-top-ten \
-            --params=ruleset_types:0 \
-            --params=exclude:
+      #- name: semgrep-Scan
+       # run: |
+        #  kdt scan\
+         #   -p ${{ github.event.repository.name }} \
+          #  -b main \
+           # -t semgrep \
+            #--params=ruleset_options:owasp-top-ten \
+            #--params=ruleset_types:0 \
+            #--params=exclude:
     
       - name: Import Sbom Results
         run: |
