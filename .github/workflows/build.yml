@@ -22,9 +22,6 @@ jobs:
       - name: Set up Gradle Wrapper
         run: chmod +x ./gradlew
 
-      #- name: Build with Gradle
-        #run: ./gradlew build --no-daemon
-
       - name: Setup KDT
         run: |
           curl -sSL https://cli.kondukto.io | sh
@@ -33,38 +30,17 @@ jobs:
           
       - name: list-projects
         run: |
-          kdt list projects\
+          kdt list projects
 
       - name:  linux-commands
         run: |
-          ls 
-          #wget https://github.com/Throw-in-can/kotlin-petclinic/blob/main/kotlin-cyclone.json 
+          ls
           whoami
-          ls /
-          ls 
-
+          
       - name: import-manual
         run: |
           kdt sbom import -p kotlin-petclinic -b main -f kotlin-cyclone.json
-          
-  
+            
       - name: scan-manual
         run: |
           kdt scan -p kotlin-petclinic -t semgrep -b main --params=ruleset_options:owasp-top-ten --params=ruleset_types:0 --params=exclude:
-      
-      #- name: semgrep-Scan
-       # run: |
-        #  kdt scan\
-         #   -p ${{ github.event.repository.name }} \
-          #  -b main \
-           # -t semgrep \
-            #--params=ruleset_options:owasp-top-ten \
-            #--params=ruleset_types:0 \
-            #--params=exclude:
-    
-     # - name: Import Sbom Results
-      #  run: |
-       #   kdt sbom import\
-        #    -p ${{ github.event.repository.name }}\ 
-         #   -b main\ 
-          #  -f kotlin-cyclone.json
