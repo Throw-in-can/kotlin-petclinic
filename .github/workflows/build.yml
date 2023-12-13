@@ -27,11 +27,12 @@ jobs:
           curl -sSL https://cli.kondukto.io | sh
           echo "KONDUKTO_HOST=${{ secrets.KONDUKTO_HOST }}" >> $GITHUB_ENV
           echo "KONDUKTO_TOKEN=${{ secrets.KONDUKTO_TOKEN }}" >> $GITHUB_ENV
-          kdt ping
-          kdt version
+
           
       - name: list-projects
         run: |
+          kdt ping
+          kdt version
           kdt list projects
 
       - name:  linux-commands
@@ -42,7 +43,9 @@ jobs:
       - name: import-manual
         run: |
           kdt sbom import -p kotlin-petclinic -b main -f kotlin-cyclone.json
+          kdt scan -p kotlin-petclinic -t osvscannersca -b main -f osv-scanner-result.json
             
       - name: scan-manual
         run: |
           kdt scan -p kotlin-petclinic -t semgrep -b main --params=ruleset_options:owasp-top-ten --params=ruleset_types:0 --params=exclude:
+        
